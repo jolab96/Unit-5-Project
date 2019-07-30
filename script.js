@@ -1,3 +1,7 @@
+
+// AJAX function gathering all the JSON information from the API
+// Then looping through all of the employees and assigning them to the data
+// Creating variables for each property and then replacing it within the gallery div markup
 $.ajax({
     url: 'https://randomuser.me/api/?results=12&nat=us',
     dataType: 'json',
@@ -24,10 +28,16 @@ $.ajax({
                 </div>
                 </div>`;
 
-            $('#gallery').append(galleryCard);
+            $('#gallery').append(galleryCard); // appending the gallerycard with the variablels holding the data
         })
     }
 });
+
+
+// function for the modal container (popup window)
+// assigning variables to a random index within each property
+// replacing each data property within the div markup
+// appending the entire modal contaner with replaced varibles, into the body
 
 function modalContainer(i) {
     const picture = jsonData[i].picture.large;
@@ -58,12 +68,13 @@ function modalContainer(i) {
                 </div>
         </div>`
     )
-
+    // event listener to closer modal container on click
     $('.modal-close-btn').on('click', function () {
         $('.modal-container').remove();
     });
 }
 
+// event listening that calls the modal contaner function 
 
 $('#gallery').on('click', ".card", function () {
     i = ($(this).index());
